@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class FriendsList extends Component {
+  state = {
+    friends: []
+  }
   render() {
     return (
       <div>
@@ -19,6 +22,10 @@ class FriendsList extends Component {
         </ul>
       </div>
     );
+  }
+
+  componentDidMount() {
+    axios.get('http://localhost:5000/friends').then(result => {this.setState({ friends: result.data})}).catch( (reason: any) => console.log('woops!'));
   }
 }
 
